@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="container" >
+  <form [formGroup]="singInForm" (ngSubmit)="singIn()">
+    <h2>Sing in</h2>
+    <div class="wrapper">
+      <label for="email">Email</label>
+      <input id="email" type="text" formControlName="email">
+    </div>
+    <div class="wrapper">
+      <label for="password">Password</label>
+      <input id="password" type="text" formControlName="password">
+    </div>
+    <button class="btn">Sing In</button>
+  </form>
+  <p *ngIf="wrongLoginData" class="errorMassage">Sorry this is wrong password or this email already in use</p>
+</div>
