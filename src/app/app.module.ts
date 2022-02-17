@@ -11,6 +11,7 @@ import { ProfileComponent } from './navigation/profile/profile.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {LoginModule} from "./navigation/login/login.module";
+import { UserService } from './navigation/services/user.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {LoginModule} from "./navigation/login/login.module";
     HttpClientModule,
     LoginModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
