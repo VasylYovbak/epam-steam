@@ -53,7 +53,8 @@ label{
   margin: 20px 0;
   color: white;
 }
-.btn:hover{
+
+.btn:hover:enabled{
   cursor: pointer;
 }
 h2{

@@ -7,7 +7,7 @@
     </div>
     <div class="wrapper">
       <label for="email">Email</label>
-      <input id="email" type="text" formControlName="email">
+      <input id="email" [attr.disabled]="'disabled'" type="text" formControlName="email" >
     </div>
     <div class="wrapper">
       <label for="age">Age</label>
@@ -15,4 +15,14 @@
     </div>
     <button class="btn">Save</button>
   </form>
+  <p class="errorMassage"
+     *ngIf="profileForm.controls['username'].invalid&&profileForm.controls['username'].touched"
+  >
+    Username can't be empty!!!
+  </p>
+  <p class="errorMassage"
+     *ngIf="profileForm.controls['age'].invalid&&profileForm.controls['age'].touched"
+  >
+    Minimum age is 12!!!
+  </p>
 </div>
