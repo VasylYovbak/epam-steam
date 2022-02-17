@@ -8,9 +8,6 @@ import { LibraryComponent } from './navigation/library/library.component';
 import { GamesComponent } from './navigation/games/games.component';
 import { LoginComponent } from './navigation/login/login.component';
 import { ProfileComponent } from './navigation/profile/profile.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
-import {LoginModule} from "./navigation/login/login.module";
 
 @NgModule({
   declarations: [
@@ -19,13 +16,11 @@ import {LoginModule} from "./navigation/login/login.module";
     FriendsComponent,
     LibraryComponent,
     GamesComponent,
+    LoginComponent,
     ProfileComponent
   ],
   imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    LoginModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
