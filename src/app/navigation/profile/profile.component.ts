@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {UserService} from "../services/user.service";
 import {CookieService} from "../services/cookie.service";
 
@@ -12,9 +12,9 @@ import {CookieService} from "../services/cookie.service";
 export class ProfileComponent implements OnInit {
 
   profileForm = new FormGroup({
-    username: new FormControl(''),
-    email: new FormControl('',[]),
-    age: new FormControl('')
+    username: new FormControl('',[Validators.required]),
+    email: new FormControl(''),
+    age: new FormControl('',[Validators.min(10)])
   });
   user_id = 0;
 

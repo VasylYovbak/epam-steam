@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User, UserService} from "../services/user.service";
 import {CookieService} from "../services/cookie.service";
 import {interval} from "rxjs";
@@ -12,8 +12,8 @@ import {interval} from "rxjs";
 export class LoginComponent implements OnInit {
 
   singInForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+    email: new FormControl('',[Validators.required,Validators.email]),
+    password: new FormControl('',[Validators.required,Validators.minLength(8)])
   })
   wrongLoginData = false;
 
