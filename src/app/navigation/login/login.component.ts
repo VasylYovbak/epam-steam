@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from "@angular/forms";
+import {User, UserService} from "../services/user.service";
+import {CookieService} from "../services/cookie.service";
+import {interval} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  singInForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  })
+  wrongLoginData = false;
+
+  constructor(private userService: UserService, private cookieService: CookieService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  singIn() {
+    this.userService.getUserByEmail(this.singInForm.value.email).subscribe((data) => {
+      if (data.length) {
+        if (data[0].password === this.singInForm.value.password) {
+          this.cookieService.setCookie("user_info", JSON.stringify({id: data[0].id}), 60);
+        } else {
+          this.wrongLoginData = true;
+          this.singInForm.value.password = '';
+          setTimeout(()=>{
+            this.wrongLoginData = false;
+          },5000)
+        }
+      } else {
+        this.userService.addUser(this.singInForm.value).subscribe((user: User) => {
+          this.cookieService.setCookie("user_info", JSON.stringify({id: user.id}), 60);
+        });
+      }
+    });
+
   }
 
 }
