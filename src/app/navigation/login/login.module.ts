@@ -16,6 +16,5 @@ import {CookieService} from "../services/cookie.service";
   exports: [
     LoginComponent
   ],
-  providers: [UserService,CookieService]
 })
 export class LoginModule { }

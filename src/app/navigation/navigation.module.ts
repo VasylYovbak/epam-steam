@@ -8,7 +8,14 @@ import {GamesComponent} from "./games/games.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {LoginModule} from "./login/login.module";
 import {NavigationRoutingModule} from "./navigation-routing.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FeaturedGameComponent} from "./games/featured-game/featured-game.component";
+import {SearchComponent} from "./games/search/search.component";
+import {FilterComponent} from "./games/featured-game/filter/filter.component";
+import {FilterService} from "./games/featured-game/filter/filter.service";
+import {UserService} from "./services/user.service";
+import {CookieService} from "./services/cookie.service";
+
 
 @NgModule({
   declarations: [
@@ -17,12 +24,18 @@ import {ReactiveFormsModule} from "@angular/forms";
     FriendsComponent,
     LibraryComponent,
     GamesComponent,
-    ProfileComponent],
+    ProfileComponent,
+    FeaturedGameComponent,
+    SearchComponent,
+    FilterComponent],
+
   imports: [
     CommonModule,
     LoginModule,
     NavigationRoutingModule,
     ReactiveFormsModule,
-  ]
+    FormsModule
+  ],
+  providers: [FilterService,UserService,CookieService]
 })
 export class NavigationModule { }
