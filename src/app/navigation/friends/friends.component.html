@@ -3,22 +3,44 @@
   <div class="friends-search_wrapper">
     <label for="finde-friend_form" class="friends-label">Search Friends</label>
     <form id="finde-friend_form" class="friends-search">
-      <input        
-        type="text"
-        class="friends-input"
-        placeholder="Search Friends"
-      />
+      <input type="text" class="friends-input" placeholder="Search Friends" />
       <button type="button" class="friends-search_btn">Search</button>
     </form>
   </div>
   <h2 class="searched-friend">Search Friends: Swag</h2>
-  <ul class="friends-list">
+  <div *ngIf="isFriends(); then friendsList; else noFriends"></div>
+</div>
+
+<ng-template #friendsList>
+  <ul class="friends-list" *ngFor="let friend of usersFriends()">
     <li class="friends-list_item">
-      Swag
-      <button type="button" class="friends-list_add-btn">Add Friend</button>
-    </li><li class="friends-list_item">
-      Swag
-      <button type="button" class="friends-list_add-btn">Add Friend</button>
+      {{ friend }}
+      <button
+        type="button"
+        class="friends-list_remove-btn"
+        (click)="onRemoveFriend(friend)"
+      >
+        Remove Friend
+      </button>
     </li>
   </ul>
-</div>
+</ng-template>
+
+<ng-template #friendsList>
+  <ul class="friends-list" *ngFor="let friend of usersFriends()">
+    <li class="friends-list_item">
+      {{ friend }}
+      <button
+        type="button"
+        class="friends-list_add-btn"
+        (click)="onRemoveFriend(friend)"
+      >
+        Add Friend
+      </button>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #noFriends>
+  <h3 class="friends-list_empty">Your friends list is empty</h3>
+</ng-template>
