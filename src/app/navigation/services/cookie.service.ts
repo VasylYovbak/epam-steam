@@ -14,7 +14,8 @@ export class CookieService {
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
   }
-  getCookie(name: string):string | null {
+
+  getCookie(name: string): string | null {
     let nameEQ = name + "=";
     let ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
@@ -23,6 +24,13 @@ export class CookieService {
       if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
+  }
+
+  clearCookie(name: string) {
+    let date = new Date();
+    date.setTime(date.getTime() + (1));
+    let expires = "; expires=" + date.toUTCString();
+    document.cookie = name + "=" + "" + expires + "; path=/";
   }
 
   constructor() {

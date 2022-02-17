@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User, UserService} from "../services/user.service";
 import {CookieService} from "../services/cookie.service";
-import {interval} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   })
   wrongLoginData = false;
 
-  constructor(private userService: UserService, private cookieService: CookieService) {
+  constructor(private userService: UserService, private cookieService: CookieService,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       if (data.length) {
         if (data[0].password === this.singInForm.value.password) {
           this.cookieService.setCookie("user_info", JSON.stringify({id: data[0].id}), 60);
+          this.router.navigate(['']);
         } else {
           this.wrongLoginData = true;
           this.singInForm.value.password = '';
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
       } else {
         this.userService.addUser(this.singInForm.value).subscribe((user: User) => {
           this.cookieService.setCookie("user_info", JSON.stringify({id: user.id}), 60);
+          this.router.navigate(['']);
         });
       }
     });
