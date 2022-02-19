@@ -24,6 +24,13 @@ export class CookieService {
     return null;
   }
 
+  clearCookie(name: string) {
+    let date = new Date();
+    date.setTime(date.getTime() + 1);
+    let expires = '; expires=' + date.toUTCString();
+    document.cookie = name + '=' + '' + expires + '; path=/';
+  }
+
   getUserCookie() {
     return JSON.parse(<string>this.getCookie('user_info')).id;
   }

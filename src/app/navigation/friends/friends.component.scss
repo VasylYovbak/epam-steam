@@ -48,7 +48,7 @@ $breakpoints: (
 }
 
 @mixin fonts($size: 14px, $height: 16px) {
-  font-family: "Roboto";
+  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: $size;
