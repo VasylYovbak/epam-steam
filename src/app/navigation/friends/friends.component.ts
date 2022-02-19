@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import { User } from '../services/user.model';
-import { UserService } from '../services/user.service';
+import { CookieService } from '../services/cookie.service';
+import { User, UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-friends',
@@ -8,31 +8,62 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./friends.component.scss'],
 })
 export class FriendsComponent implements OnInit {
-  // users: User[] = [];
+  allUsers: User[] = [];
+  friendsList: User[] = [];
+  searchedUsersList: User[] = [];
+  private currentUserId = this.cookieService.getUserCookie();
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
-    // this.users = this.userService.getUsers();
+    this.userService.getUser(this.currentUserId).subscribe((user) => {
+      for (let friendId of user.friends) {
+        this.userService.getUser(friendId).subscribe((friend) => {
+          this.friendsList.push(friend);
+        });
+      }
+      this.searchedUsersList = this.friendsList;
+    });
+    this.userService.getUsers().subscribe((users) => {
+      this.allUsers = users;
+    });
   }
 
-  isFriends(): boolean {
-    return true;
-    // return this.users[0].friends.length !== 0;
+  isSearchEmpty(inputValue: string) {
+    return inputValue.length === 0;
   }
 
-  usersFriends(): string[] {
-    return ['asd'];
-    // return this.users[0].friends.map((user) => user);
+  isFriendsListEmpty() {
+    return this.friendsList.length === 0;
   }
 
-  // onAddFriend(item: User) {
-  //   this.userService.addToUserCollection(item);
-  // }
+  isUserInFriendList(user: User) {
+    return this.friendsList.map((friend) => friend.id).indexOf(user.id) === 0;
+  }
 
-  // onRemoveFriend(userName: User): void {
-  //   console.log(userName)
-  //   // this.userService.removeFromUserCollection(userName);
-  //   // console.log(this.users[0].friends.filter((user) => user.indexOf(userName)));
-  // }
+  isUser() {
+    return this.searchedUsersList.length === 0;
+  }
+
+  onFriendSearch(searchedFriend: string) {
+    if (searchedFriend === '') {
+      this.searchedUsersList = this.allUsers;
+    }
+    this.searchedUsersList = this.allUsers.filter((user) => {
+      return user.username.includes(searchedFriend);
+    });
+  }
+
+  onAddFriend(friend: User) {
+    this.userService.addFriend(this.currentUserId, friend.id);
+    this.friendsList.push(friend);
+  }
+
+  onRemoveFriend(friend: User) {
+    this.userService.deleteFriend(this.currentUserId, friend.id);
+    this.friendsList = this.friendsList.filter((user) => user.id !== friend.id);
+  }
 }

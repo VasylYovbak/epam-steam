@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface User {
-  id?: number;
+  id: number;
   email: string;
   password: string;
-  username?: string;
+  username: string;
   age?: number;
-  friends?: Array<number>;
-  favoriteGames?: Array<number>;
+  friends: Array<number>;
+  favoriteGames: Array<number>;
 }
 
 @Injectable({
@@ -41,6 +41,9 @@ export class UserService {
 
   addFriend(id: number, friendId: number) {
     this.getUser(id).subscribe((user) => {
+      if (user.friends?.indexOf(friendId) !== -1) {
+        return;
+      }
       user.friends?.push(friendId);
       this.updateUser(id, user).subscribe();
     });

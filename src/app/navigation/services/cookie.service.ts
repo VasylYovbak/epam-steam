@@ -1,21 +1,20 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CookieService {
-
   setCookie(name: string, value: string, minutes: number) {
-    let expires = "";
+    let expires = '';
     if (minutes) {
       let date = new Date();
-      date.setTime(date.getTime() + (minutes * 60 * 1000));
-      expires = "; expires=" + date.toUTCString();
+      date.setTime(date.getTime() + minutes * 60 * 1000);
+      expires = '; expires=' + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    document.cookie = name + '=' + (value || '') + expires + '; path=/';
   }
-  getCookie(name: string):string | null {
-    let nameEQ = name + "=";
+  getCookie(name: string): string | null {
+    let nameEQ = name + '=';
     let ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
@@ -25,6 +24,9 @@ export class CookieService {
     return null;
   }
 
-  constructor() {
+  getUserCookie() {
+    return JSON.parse(<string>this.getCookie('user_info')).id;
   }
+
+  constructor() {}
 }
