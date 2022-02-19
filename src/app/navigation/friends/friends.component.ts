@@ -41,7 +41,7 @@ export class FriendsComponent implements OnInit {
   }
 
   isUserInFriendList(user: User) {
-    return this.friendsList.map((friend) => friend.id).indexOf(user.id) === 0;
+    return this.friendsList.map((friend) => friend.id).indexOf(user.id) !== -1;
   }
 
   isUser() {
@@ -49,12 +49,14 @@ export class FriendsComponent implements OnInit {
   }
 
   onFriendSearch(searchedFriend: string) {
+    console.log(this.friendsList);
     if (searchedFriend === '') {
-      this.searchedUsersList = this.allUsers;
+      this.searchedUsersList = this.friendsList;
+    }else{
+      this.searchedUsersList = this.allUsers.filter((user) => {
+        return user.username.includes(searchedFriend);
+      });
     }
-    this.searchedUsersList = this.allUsers.filter((user) => {
-      return user.username.includes(searchedFriend);
-    });
   }
 
   onAddFriend(friend: User) {
