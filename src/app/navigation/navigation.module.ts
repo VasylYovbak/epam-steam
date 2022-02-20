@@ -15,6 +15,7 @@ import {FilterComponent} from "./games/featured-game/filter/filter.component";
 import {FilterService} from "./games/featured-game/filter/filter.service";
 import {UserService} from "./services/user.service";
 import {CookieService} from "./services/cookie.service";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 
 @NgModule({
@@ -34,8 +35,8 @@ import {CookieService} from "./services/cookie.service";
     LoginModule,
     NavigationRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [FilterService,UserService,CookieService]
+  providers: [FilterService,UserService,CookieService,AuthGuardService]
 })
 export class NavigationModule { }
