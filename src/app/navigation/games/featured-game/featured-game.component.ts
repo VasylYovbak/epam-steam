@@ -26,7 +26,6 @@ export class FeaturedGameComponent implements OnInit {
   }
 
   Submit() {
-    console.log('click');
     return this.http.post('https://testing-heroku-kekw.herokuapp.com/games', {
       title: 'Doom',
       price: 350,
@@ -49,8 +48,6 @@ export class FeaturedGameComponent implements OnInit {
         this.userService.updateUser(this.user_id, data).subscribe(console.log);
       }
     });
-    console.log('click ід:', this.user_id);
-    console.log('event', event.target.id);
   }
 
   getGames() {
