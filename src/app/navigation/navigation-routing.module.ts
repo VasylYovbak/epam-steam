@@ -5,13 +5,14 @@ import {ProfileComponent} from "./profile/profile.component";
 import {GamesComponent} from "./games/games.component";
 import {FriendsComponent} from "./friends/friends.component";
 import {LibraryComponent} from "./library/library.component";
+import {AuthGuardService} from "./services/auth-guard.service";
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path:'profile',component:ProfileComponent},
+  {path:'profile',component:ProfileComponent ,canActivate:[AuthGuardService]},
   {path:'',component:GamesComponent},
-  {path:'friends',component:FriendsComponent},
-  {path:'library',component:LibraryComponent},
+  {path:'friends',component:FriendsComponent ,canActivate:[AuthGuardService]},
+  {path:'library',component:LibraryComponent ,canActivate:[AuthGuardService]},
   {path:'**',component:GamesComponent}
 ]
 
