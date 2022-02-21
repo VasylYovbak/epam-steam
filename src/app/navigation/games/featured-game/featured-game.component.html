@@ -1,20 +1,21 @@
 <h3 class="FeaturedGamesTitle">Featured Games</h3>
+<!--<button (click)="Submit()"></button>-->
 <div class="FeaturedContentContainer">
   <div class="FeaturedGamesContainer">
-      <div *ngFor="let game of getGames()">
-        <div class="GameContainer">
-          <div class="GameHeader">
-            <div class="GameHeaderContent">
-              <div>{{game.title}}</div>
-              <div class="GamePrice">{{game.price}} UAH</div>
-            </div>
-          </div>
-          <div class="GameContent">
-            <p>{{game.text}}</p>
-            <button class="AddToLibraryBtn">Add to Library</button>
+    <div *ngFor="let game of getGames()">
+      <div class="GameContainer" >
+        <div class="GameHeader">
+          <div class="GameHeaderContent">
+            <div>{{game.title}}</div>
+            <div class="GamePrice">{{game.price}} UAH</div>
           </div>
         </div>
+        <div class="GameContent">
+          <p>{{game.text}}</p>
+          <button [id]="game.id" class="AddToLibraryBtn" (click)="addToLibrary($event)">Add to Library</button>
+        </div>
       </div>
+    </div>
   </div>
   <div>
     <app-filter></app-filter>

@@ -49,7 +49,6 @@ export class FriendsComponent implements OnInit {
   }
 
   onFriendSearch(searchedFriend: string) {
-    console.log(this.friendsList);
     if (searchedFriend === '') {
       this.searchedUsersList = this.friendsList;
     }else{
