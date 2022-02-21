@@ -12,7 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FeaturedGameComponent} from "./games/featured-game/featured-game.component";
 import {SearchComponent} from "./games/search/search.component";
 import {FilterComponent} from "./games/featured-game/filter/filter.component";
-import {FilterService} from "./games/featured-game/filter/filter.service";
+import {FilterService} from "./services/filter.service";
 import {UserService} from "./services/user.service";
 import {CookieService} from "./services/cookie.service";
 
