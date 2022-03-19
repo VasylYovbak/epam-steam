@@ -32,6 +32,7 @@ export class UserService {
     user.username = user.email;
     user.friends = [];
     user.favoriteGames = [];
+    user.age = 0;
     return this.http.post<User>(this.link + '/user', user);
   }
 

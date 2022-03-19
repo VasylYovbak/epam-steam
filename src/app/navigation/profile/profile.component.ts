@@ -23,11 +23,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cookieService.getCookie("user_info") !== null) {
-      this.user_id = JSON.parse(<string>this.cookieService.getCookie("user_info")).id;
-      this.userService.getUser(this.user_id).subscribe((user) => {
+        this.user_id = JSON.parse(<string>this.cookieService.getCookie("user_info")).id;
+        this.userService.getUser(this.user_id).subscribe((user) => {
         this.profileForm.controls['email'].setValue(user.email);
         this.profileForm.controls['age'].setValue(user.age || '');
-        this.profileForm.controls['username'].setValue(user.username || '');
+        this.profileForm.controls['username'].setValue(user.username );
       })
     }
   }
