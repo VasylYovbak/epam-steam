@@ -1,0 +1,23 @@
+<h3 class="FeaturedGamesTitle">Featured Games</h3>
+<div class="FeaturedContentContainer">
+  <div class="FeaturedGamesContainer">
+    <div *ngFor="let game of getGames()">
+      <div class="GameContainer" >
+        <div class="GameHeader">
+          <div class="GameHeaderContent">
+            <div>{{game.name}}</div>
+            <div class="GamePrice">{{game.price}} UAH</div>
+          </div>
+        </div>
+        <div class="GameContent">
+          <p>{{game.description}}</p>
+          <button [id]="game.id" class="AddToLibraryBtn" (click)="addToLibrary($event)">Add to Library</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-filter></app-filter>
+  </div>
+</div>
+

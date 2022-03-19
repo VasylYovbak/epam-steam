@@ -1,0 +1,13 @@
+<nav>
+  <img src="../../assets/steam-icon.png" alt="can't open stem icon">
+  <p class="nav-element" routerLink="">Games</p>
+  <p class="nav-element" routerLink="/library">Library</p>
+  <p class="nav-element" routerLink="/friends">Friends</p>
+  <p class="nav-element" routerLink="/profile">Profile</p>
+  <div class="right" *ngIf="loggedIn;">
+    <p class="nav-element" routerLink="/login" id = "logIn">Login</p>
+  </div>
+  <div class="right" *ngIf="!loggedIn;">
+    <p class="nav-element" routerLink="/login" (click)="logOut()" id = "logOut">Logout</p>
+  </div>
+</nav>

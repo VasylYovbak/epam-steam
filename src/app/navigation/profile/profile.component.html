@@ -1,0 +1,28 @@
+<div class="container" *ngIf="user_id">
+  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+    <h2>Profile</h2>
+    <div class="wrapper">
+      <label for="username">Username</label>
+      <input id="username" type="text" formControlName="username">
+    </div>
+    <div class="wrapper">
+      <label for="email">Email</label>
+      <input id="email" [attr.disabled]="'disabled'" type="text" formControlName="email" >
+    </div>
+    <div class="wrapper">
+      <label for="age">Age</label>
+      <input id="age" type="text" formControlName="age">
+    </div>
+    <button class="btn">Save</button>
+  </form>
+  <p class="errorMassage"
+     *ngIf="profileForm.controls['username'].invalid&&profileForm.controls['username'].touched"
+  >
+    Username can't be empty!!!
+  </p>
+  <p class="errorMassage"
+     *ngIf="profileForm.controls['age'].invalid&&profileForm.controls['age'].touched"
+  >
+    Minimum age is 12!!!
+  </p>
+</div>

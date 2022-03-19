@@ -1,0 +1,27 @@
+<div class="container">
+  <form [formGroup]="singInForm" (ngSubmit)="singIn()">
+    <h2>Sing in</h2>
+    <div class="wrapper">
+      <label for="email">Email</label>
+      <input id="email" type="text" formControlName="email">
+    </div>
+    <div class="wrapper">
+      <label for="password">Password</label>
+      <input id="password" type="text" formControlName="password">
+    </div>
+    <button class="btn"
+            [disabled]="singInForm.invalid"
+            [ngStyle]="{ 'background':singInForm.invalid ?'gray':'#6C69FF'}"
+    >Sing In
+    </button>
+  </form>
+  <p *ngIf="wrongLoginData" class="errorMassage">
+    Sorry this is wrong password or this email already in use
+  </p>
+  <p *ngIf="singInForm.controls['email'].invalid&&singInForm.controls['email'].touched" class="errorMassage">
+    Wrong email!!! Please choose another!
+  </p>
+  <p *ngIf="singInForm.controls['password'].invalid&&singInForm.controls['password'].touched" class="errorMassage">
+    Wrong password!!! Minimum password length is 8!
+  </p>
+</div>

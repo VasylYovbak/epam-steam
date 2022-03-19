@@ -1,0 +1,36 @@
+<div class="FilterContainer">
+  <div class="vertical"></div>
+  <div class="FilterContentContainer">
+    <div>
+      <p>Filter by price</p>
+    </div>
+    <div>
+      <div class="SlideContainer">
+        <div class="SliderContent">
+          <div class="FilterSlider">
+            <input type="range" min="1" max="1500"  class="slider" id="myRange" [(ngModel)]="valuePrice" (change)="getValuePrice()">
+          </div>
+          <div class="LabelSlider">
+            <label for="myRange">{{valuePrice}}</label>
+          </div>
+        </div>
+        <div>
+          <p>Filter by tag</p>
+        </div>
+        <div class="CheckBoxesContainer">
+          <div *ngFor="let checkBox of checkBoxesArr">
+            <div>
+              <input type="checkbox"
+                     (click)="getTagForFilter($event)"
+                     class="FilterCheckbox"
+                     id="indie"
+                     name="{{checkBox.text}}"
+                     checked>
+            </div>
+            <label for="indie">{{checkBox.text}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

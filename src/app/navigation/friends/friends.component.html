@@ -1,0 +1,59 @@
+<div id="friends" class="friends-wrapper">
+  <h2 class="friends-title">Friends</h2>
+  <div class="friends-search_wrapper">
+    <label for="finde-friend_form" class="friends-label">Search Friends</label>
+    <form id="finde-friend_form" class="friends-search">
+      <input
+        type="text"
+        class="friends-input"
+        name="user-search"
+        placeholder="Search Friends"
+        #searchUser
+        (keyup)="onFriendSearch(searchUser.value)"
+      />
+      <button
+        type="button"
+        class="friends-search_btn"
+        (click)="onFriendSearch(searchUser.value)"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <h2 class="searched-friend">Search Friends: {{ searchUser.value }}</h2>
+  <div
+    class="user-list__wrapper"
+    *ngIf="!isFriendsListEmpty() || !isSearchEmpty(searchUser.value)"
+  >
+    <ul class="friends-list">
+      <li
+        class="friends-list_item"
+        *ngFor="let friendToAdd of searchedUsersList"
+      >
+        {{ friendToAdd.username }}
+        <button
+          type="button"
+          class="friends-list_add-btn"
+          (click)="onAddFriend(friendToAdd)"
+          *ngIf="!isUserInFriendList(friendToAdd)"
+        >
+          Add Friend
+        </button>
+        <button
+          type="button"
+          class="friends-list_remove-btn"
+          (click)="onRemoveFriend(friendToAdd)"
+          *ngIf="isUserInFriendList(friendToAdd)"
+        >
+          Remove Friend
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="isSearchEmpty(searchUser.value) && isFriendsListEmpty()">
+    <h3 class="friends-list_empty">Your friends list is empty</h3>
+  </div>
+  <div *ngIf="!isSearchEmpty(searchUser.value) && isUser()">
+    <h3 class="users-list_empty">Such user dosen't exists</h3>
+  </div>
+</div>

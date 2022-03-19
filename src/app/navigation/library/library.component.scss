@@ -1,0 +1,87 @@
+.LibraryContentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  padding: 50px;
+}
+
+.LibraryGamesContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.LibraryGamesContainer * {
+  flex: 0 0 33.333333%;
+}
+
+.GameContainer {
+  margin: 0 10px 10px 0;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  color: #ffffff;
+}
+
+.GameHeaderContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 150px;
+  padding: 8px;
+}
+
+.GameHeader {
+  background: #BDBCFF;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+}
+
+.GamePrice {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.GameContent {
+  color: #000000;
+  padding: 8px 16px;
+}
+
+.DownloadBtn {
+  color: #ffffff;
+  border: #6C69FF;
+  border-radius: 4px;
+  background: #6C69FF;
+  height: 32px;
+}
+
+.ShareBtn {
+  color: #6C69FF;
+  border: #ffffff;
+  border-radius: 4px;
+  background: #ffffff;
+  height: 32px;
+}
+
+.GameContent > p {
+  height: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.BtnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.LibraryContent {
+  padding: 20px 60px;
+}
+
+.LibraryGamesTitle{
+  font-weight: normal;
+  font-size: 24px;
+}
