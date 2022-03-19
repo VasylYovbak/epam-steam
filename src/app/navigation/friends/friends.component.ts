@@ -22,11 +22,14 @@ export class FriendsComponent implements OnInit {
     this.userService.getUser(this.currentUserId).subscribe((user) => {
       for (let friendId of user.friends) {
         this.userService.getUser(friendId).subscribe((friend) => {
-          this.friendsList.push(friend);
+          if (friend.id !== this.currentUserId) {
+            this.friendsList.push(friend);
+          }
         });
       }
       this.searchedUsersList = this.friendsList;
     });
+
     this.userService.getUsers().subscribe((users) => {
       this.allUsers = users;
     });
@@ -51,9 +54,11 @@ export class FriendsComponent implements OnInit {
   onFriendSearch(searchedFriend: string) {
     if (searchedFriend === '') {
       this.searchedUsersList = this.friendsList;
-    }else{
+    } else {
       this.searchedUsersList = this.allUsers.filter((user) => {
-        return user.username.includes(searchedFriend);
+        return user.id !== this.currentUserId
+          ? user.username.includes(searchedFriend)
+          : false;
       });
     }
   }
