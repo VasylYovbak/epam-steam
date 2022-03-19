@@ -1,6 +1,7 @@
-import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {CookieService} from "./services/cookie.service";
 import {Router} from "@angular/router";
+
 
 
 @Component({
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class NavigationComponent implements OnInit,DoCheck {
 
-  loggedIn:boolean =true ;
+  loggedIn:boolean = true ;
   constructor(private cookie:CookieService,private router:Router) { }
 
 

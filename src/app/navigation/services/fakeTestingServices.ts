@@ -23,7 +23,7 @@ let users = [
     email: 'tes@tes',
     password: '12345678',
     username: 'tes@tes',
-    friends: [1, 2],
+    friends: [1],
     favoriteGames: [],
   },
   {
@@ -57,22 +57,20 @@ userServiceStub = {
     return of(user);
   },
   addFriend(id: number, friendId: number) {
-    
   },
   deleteFriend(id: number, friendId: number) {
-
-  },
+  }
 };
 cookieServiceStub = {
   getCookie(name: string): string | null {
-    return name === 'user_info' ? '{"id":1}' : null;
+    return name === "user_info" ? '{"id":1}' : null;
   },
-  setCookie(name: string, value: string, minutes: number) {},
+  setCookie(name: string, value: string, minutes: number) {
+  },
   getUserCookie(): number {
     return 1;
   },
   clearCookie(name: string) {
-
   },
 };
 

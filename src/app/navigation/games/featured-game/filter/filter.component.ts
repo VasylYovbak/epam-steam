@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FilterService} from "../../../services/filter.service";
+import {Game} from "../../../services/game.service";
 
 export interface CheckBox {
   text: string,
@@ -14,13 +15,16 @@ export interface CheckBox {
 export class FilterComponent implements OnInit {
   tagsArrForFilter: string[] = ["Indie", "Action", "Adventure"];
   checkBoxesArr: CheckBox[];
-  valuePrice: number = 400;
+  games!: Game[];
+  valuePrice: number = 1500;
+
 
   constructor(private filterService: FilterService) {
     this.checkBoxesArr = [{text: "Indie", id: 0}, {text: "Action", id: 1}, {text: "Adventure", id: 2}];
   }
 
   ngOnInit(): void {
+    this.filterService.getAllGames();
   }
 
   getTagForFilter(event: any) {
@@ -29,11 +33,11 @@ export class FilterComponent implements OnInit {
     } else {
       this.tagsArrForFilter = this.tagsArrForFilter.filter((name) => name !== event.target.name);
     }
-    this.filterService.getFilter(this.tagsArrForFilter,this.valuePrice);
+    this.filterService.getFilter(this.tagsArrForFilter, this.valuePrice);
   }
 
   getValuePrice() {
-    this.filterService.getFilter(this.tagsArrForFilter,this.valuePrice);
+    this.filterService.getFilter(this.tagsArrForFilter, this.valuePrice);
   }
 
 }
