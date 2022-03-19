@@ -4,9 +4,9 @@ import {map, Observable} from "rxjs";
 
 
 export interface Game {
-  title: string,
+  name: string,
   price: number,
-  text: string,
+  description: string,
   tag: string,
   id: number
 }

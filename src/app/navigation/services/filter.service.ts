@@ -24,7 +24,7 @@ export class FilterService {
       return this.filteredGames;
     }else {
       this.filteredGames = this.games.filter((game) => {
-        return game.title.includes(search);
+        return game.name.includes(search);
       })
     }
     return this.filteredGames;
